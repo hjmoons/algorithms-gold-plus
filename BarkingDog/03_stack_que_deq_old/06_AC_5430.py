@@ -19,10 +19,10 @@ for i in range(n):
 
     # RD 함수 처리
     check = True    # 배열의 길이가 0인 경우 확인 변수
-    reverse = 0 # False 일 경우 왼쪽 팝, True일 경우 오른쪽 팝
+    reverse = False     # False 일 경우 왼쪽 팝, True일 경우 오른쪽 팝
     for f in func:
         if f == 'R':
-            reverse += 1
+            reverse = not reverse # reverse = not reverse
         elif f == 'D':
             # 배열의 길이가 0인 경우 팝 불가능 -> error
             if length < 1:
@@ -30,7 +30,7 @@ for i in range(n):
                 break
 
             # reverse 변수가 홀수일 경우 오른쪽팝, 짝수일 경우 왼쪽팝
-            if int(reverse%2):
+            if reverse:
                 arr_deq.pop()
             else:
                 arr_deq.popleft()
