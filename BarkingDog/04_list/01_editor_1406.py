@@ -2,34 +2,21 @@ import sys
 
 input = sys.stdin.readline
 
-str = list(input().rstrip())
-n = int(input().rstrip())
+str_1 = list(input().rstrip())  # 커서 왼쪽
+str_2 = []  # 커서 오른쪽
 
-cursor = len(str)
+n = int(input().rstrip())
 
 for i in range(n):
     cmd = input().rstrip().split()
-    #print(str, i)
-    if cmd[0] == 'L':
-        if cursor == 0:
-            continue
-        cursor -= 1
-    elif cmd[0] == 'D':
-        if cursor == len(str):
-            continue
-        cursor += 1
-    elif cmd[0] == 'B':
-        if cursor == 0:
-            continue
-        elif cursor == len(str):
-            #print(cursor, i)
-            str.remove(str[cursor-1])
-            cursor -= 1
-        else:
-            str.remove(str[cursor-1])
+    if cmd[0] == 'L' and len(str_1) != 0:
+        str_2.append(str_1.pop())
+    elif cmd[0] == 'D' and len(str_2) != 0:
+        str_1.append(str_2.pop())
+    elif cmd[0] == 'B' and len(str_1) != 0:
+        str_1.pop()
     elif cmd[0] == 'P':
-        str.insert(cursor, cmd[1])
+        str_1.append(cmd[1])
 
-print(str)
-
-
+str_2.reverse() # str_2에서 팝을 해야 정상 순서이므로 역순으로 출력
+print(''.join(str_1 + str_2))
