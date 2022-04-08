@@ -1,18 +1,18 @@
 import sys
 import heapq
-from collections import defaultdict
 
 input = sys.stdin.readline
 
 n, m = map(int, input().rstrip().split())
-road = defaultdict(list)
+road = [[] for _ in range(n+1)]
 
 for _ in range(m):
     a, b, c = map(int, input().rstrip().split())
-    road[a].append((b, c))
+    road[a].append([b, c])
+    road[b].append([a, c])
 
 INF = int(1e9)
-weight = [INF] * (n + 1)        # 노드까지 가는 최소 여물
+weight = [INF] * (n + 1)        # 1에서 시작했을 때 각 노드까지 가는 최소 여물
 
 def dijkstra(start):
     q = []
@@ -32,4 +32,4 @@ def dijkstra(start):
                 heapq.heappush(q, (cost, next[0]))
 
 dijkstra(1)
-print(weight)
+print(weight[n])
