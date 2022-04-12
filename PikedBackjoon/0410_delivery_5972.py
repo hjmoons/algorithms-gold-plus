@@ -26,8 +26,8 @@ def dijkstra(start):
             continue
         # 큐에서 뽑아낸 노드와 연결된 인접노드들 탐색
         for next in road[node]:
-            cost = weight[node] + next[1]
-            if cost < weight[next[0]]:
+            cost = weight[node] + next[1]   # 시작->node거리 + node->node의인접노드 거리
+            if cost < weight[next[0]]:      # cost < 시작->node의인접노드 거리
                 weight[next[0]] = cost
                 heapq.heappush(q, (cost, next[0]))
 
