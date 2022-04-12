@@ -12,7 +12,7 @@ for _ in range(m):
     road[b].append([a, c])
 
 INF = int(1e9)
-weight = [INF] * (n + 1)        # 노드까지 가는 최소 여물
+weight = [INF] * (n + 1)        # 1에서 시작했을 때 각 노드까지 가는 최소 여물
 
 def dijkstra(start):
     q = []
