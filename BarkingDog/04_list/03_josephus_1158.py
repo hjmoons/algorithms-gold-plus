@@ -18,12 +18,15 @@ while circle:       # 원에 수가 존재하지 않을 때까지
 
 print("<" + str(result)[1:-1] + ">")
 
+# 연결 리스트 구현해서 풀어보기
+
 ''' 시간초과
 from collections import deque
 
 circle = deque([i + 1 for i in range(n)])
 result = []
 index = 0
+circle.rotate(1) -> 시간복잡도 확인해보기
 
 while circle:
     if index == k - 1:
