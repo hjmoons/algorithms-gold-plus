@@ -18,8 +18,9 @@ print()
 
 dp = [0] * len(lcs[0])
 for i in range(len(str1)):
-    count = 0
+    count = dp[0]
     print(dp)
+    print(lcs[i-1])
     print(lcs[i])
     print()
 
