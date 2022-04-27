@@ -33,6 +33,6 @@ for i in range(len(str1)):
 
             if lcs[i][j] == 1:
                 dp[j] = count + 1
-1
+
 print(dp)
 print(max(dp))
