@@ -29,11 +29,11 @@ for i in range(len(str1)):
             dp[j] = 1
             count = 1
         else:
-            if dp[j-1] > count:
-                count = dp[j-1]
+            if lcs[i-1][j-1] == 1:
+                count = 1
 
             if lcs[i][j] == 1:
-                dp[j] = count + 1
+                dp[j] = dp[j-1] + count
 
 print(dp)
 print(max(dp))
