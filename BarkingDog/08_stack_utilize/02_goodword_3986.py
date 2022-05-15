@@ -1,7 +1,5 @@
 import sys
 
-input = sys.stdin.readline
-
 
 def solution(words):
     answer = 0
@@ -10,10 +8,8 @@ def solution(words):
 
         stack = []
         count = 0
-        check = True
 
         for i in range(len(word)):
-            print(stack, word[i])
             if count < 1:
                 stack.append(word[i])
                 count += 1
@@ -24,16 +20,17 @@ def solution(words):
                 count -= 1
             else:
                 stack.append(word[i])
-
+                count += 1
 
         if not stack:
             answer += 1
-
 
     return answer
 
 
 if __name__ == '__main__':
+    input = sys.stdin.readline
+
     words = []
     # input
     N = int(input().rstrip())
