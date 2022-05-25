@@ -4,18 +4,33 @@ import sys
 def solution(s):
     answer = 0
     stack = []
-    top = -1
     t = 1
     for i in range(len(s)):
-        if s[i] == '(' or s[i] == '[':
-            stack.append(s[i])
-            top += 1
-        elif stack[top] == '(' and (s[i] == '(' or s[i] == '['):
+        if s[i] == '(':
             stack.append(s[i])
             t *= 2
-        elif stack[top] == '[' and (s[i] == '(' or s[i] == '['):
+        elif s[i] == '[':
             stack.append(s[i])
             t *= 3
+        elif s[i] == ')':
+            if not stack or stack[-1] != '(':
+                answer = 0
+                break
+            if s[i-1] == '(':
+                answer += t
+            t //= 2
+            stack.pop()
+        else:
+            if not stack or stack[-1] != '[':
+                answer = 0
+                break
+            if s[i-1] == '[':
+                answer += t
+            t //= 3
+            stack.pop()
+
+    if stack:
+        answer = 0
 
     return answer
 
