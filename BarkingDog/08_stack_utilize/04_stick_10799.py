@@ -1,29 +1,19 @@
 import sys
 
 
-def solution(words):
+def solution(sticks):
     answer = 0
+    sticks = sticks.replace("()", "*")
+    stack = []
 
-    for word in words:
-
-        stack = []
-        count = 0
-
-        for i in range(len(word)):
-            if count < 1:
-                stack.append(word[i])
-                count += 1
-                continue
-
-            if word[i] == stack[count - 1]:
-                stack.pop()
-                count -= 1
-            else:
-                stack.append(word[i])
-                count += 1
-
-        if not stack:
+    for i in range(len(sticks)):
+        if sticks[i] == '(':        # 쇠막대기 시작
+            stack.append(sticks[i])
+        elif sticks[i] == ')':      # 쇠막대기 끝
+            stack.pop()
             answer += 1
+        else:   # 레이저일 경우
+            answer += len(stack)
 
     return answer
 
@@ -31,10 +21,6 @@ def solution(words):
 if __name__ == '__main__':
     input = sys.stdin.readline
 
-    words = []
-    # input
-    N = int(input().rstrip())
-    for _ in range(N):
-        words.append(input().rstrip())
+    sticks = input().rstrip()
 
-    print(solution(words))
+    print(solution(sticks))
