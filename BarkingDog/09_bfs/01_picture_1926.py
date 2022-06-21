@@ -30,6 +30,7 @@ def bfs(n, m, canvas, x, y):
 def solution(n, m, canvas):
     picture = 0 # 그림의 개수
     areas = []  # 그림의 넓이 배열
+    max_area = 0
 
     for x in range(n):
         for y in range(m):
@@ -37,7 +38,9 @@ def solution(n, m, canvas):
                 picture += 1
                 areas.append(bfs(n, m, canvas, x, y))
 
-    max_area = max(areas)
+    if len(areas) > 0:  # 
+        max_area = max(areas)
+
     return picture, max_area
 
 
